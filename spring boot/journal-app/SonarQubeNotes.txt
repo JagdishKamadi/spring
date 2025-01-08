@@ -1,0 +1,18 @@
+#SonarQube Location: C:\Software\sonarqube-8.9.10.61524
+#URl: http://localhost:9000/projects
+#Username: admin & Password: Jagadish@99
+
+
+#Steps
+1) Go to the folder location(C:\Software\sonarqube-8.9.10.61524\sonarqube-8.9.10.61524\bin\windows-x86-64) and start the Sonar
+
+2) Then add the below plugin to the pom
+            <plugin>
+                <groupId>org.sonarsource.scanner.maven</groupId>
+                <artifactId>sonar-maven-plugin</artifactId>
+                <version>3.7.0.1746</version>
+            </plugin>
+
+3) And finally run the mvn command : mvn clean install sonar:sonar and then check the UI of sonar (localhost:9000)
+
+4) If face any issue while authenticating add the token in POM file
