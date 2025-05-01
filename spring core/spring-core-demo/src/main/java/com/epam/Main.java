@@ -3,6 +3,7 @@ package com.epam;
 import com.epam.config.AppConfig;
 import com.epam.service.MessageProcessor;
 import com.epam.service.MessageService;
+import com.mega.RequestBuilder;
 import org.springframework.context.annotation.AnnotationConfigApplicationContext;
 
 public class Main {
@@ -15,6 +16,8 @@ public class Main {
         MessageService messageServiceBean = (MessageService) applicationContext.getBean("twitterService");
         messageServiceBean.sendMsg("Message received");
 
+        RequestBuilder requestBuilder = new RequestBuilder();
+        requestBuilder.show();
         applicationContext.close();
     }
 }
