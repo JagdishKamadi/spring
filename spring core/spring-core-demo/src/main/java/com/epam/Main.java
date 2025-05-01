@@ -10,7 +10,7 @@ public class Main {
         AnnotationConfigApplicationContext applicationContext = new AnnotationConfigApplicationContext(AppConfig.class);
 
         MessageProcessor userService = (MessageProcessor) applicationContext.getBean("messageProcessorImpl");
-        userService.processMsg("twitter message sending ");
+        userService.processMsg("What's app message sending ");
 
         MessageService messageServiceBean = (MessageService) applicationContext.getBean("twitterService");
         messageServiceBean.sendMsg("Message received");
