@@ -6,17 +6,14 @@ import org.springframework.stereotype.Component;
 @Component
 public class MessageProcessorImpl implements MessageProcessor {
 
-
-    private MessageService messageService;
-
+    // we are using here match-by-name bean
     @Autowired
-    public void setMessageService(MessageService messageService) {
-        this.messageService = messageService;
-    }
+    private MessageService whatsAppServiceBean;
+
 
     @Override
     public void processMsg(String message) {
-        System.out.println("Bean type " + messageService.getClass());
-        messageService.sendMsg(message);
+        System.out.println("Bean type " + whatsAppServiceBean.getClass());
+        whatsAppServiceBean.sendMsg(message);
     }
 }
