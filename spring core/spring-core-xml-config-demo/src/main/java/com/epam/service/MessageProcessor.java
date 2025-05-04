@@ -1,5 +1,5 @@
 package com.epam.service;
 
-public interface MessageService {
+public interface MessageProcessor {
     void processMessage(String message);
 }
