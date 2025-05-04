@@ -17,4 +17,8 @@
         <property name="messageServiceBeanUsingTwitterServiceImplementation" ref="twitterServiceBean"/>
     </bean>
 
+    <bean id="messageSecurityServiceImplBean" class="com.epam.service.MessageSecurityServiceImpl">
+        <constructor-arg index="0" ref="messageProcessorImplBean"/>
+    </bean>
+
 </beans>
