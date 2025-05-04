@@ -14,7 +14,7 @@
         <constructor-arg index="0" ref="twitterServiceBean"/>
         <constructor-arg index="1" ref="whatsAppServiceBean"/>
         <!--    setter based injection -->
-        <property name="messageService" ref="twitterServiceBean"/>
+        <property name="messageServiceBeanUsingTwitterServiceImplementation" ref="twitterServiceBean"/>
     </bean>
 
 </beans>
