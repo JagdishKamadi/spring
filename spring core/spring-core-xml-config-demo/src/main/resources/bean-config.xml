@@ -1,20 +1,28 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <beans xmlns="http://www.springframework.org/schema/beans"
        xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
-       xsi:schemaLocation="
-        http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans.xsd">
+       xmlns:context="http://www.springframework.org/schema/context"
+       xsi:schemaLocation="http://www.springframework.org/schema/beans
+		https://www.springframework.org/schema/beans/spring-beans.xsd
+		http://www.springframework.org/schema/context
+		https://www.springframework.org/schema/context/spring-context.xsd">
+
+    <context:component-scan base-package="com.epam">
+        <context:include-filter type="annotation" expression="org.springframework.stereotype.Component"/>
+    </context:component-scan>
+
 
     <!-- bean definitions here -->
 
-    <bean id="twitterServiceBean" class="com.epam.service.TwitterService"/>
+    <!--    <bean id="twitterServiceBean" class="com.epam.service.TwitterService"/>-->
     <bean id="whatsAppServiceBean" class="com.epam.service.WhatsAppService"/>
 
     <!--    constructor based injection -->
     <bean id="messageProcessorImplBean" class="com.epam.service.MessageProcessorImpl">
-        <constructor-arg index="0" ref="twitterServiceBean"/>
+        <constructor-arg index="0" ref="twitterServiceCustomBean"/>
         <constructor-arg index="1" ref="whatsAppServiceBean"/>
         <!--    setter based injection -->
-        <property name="messageServiceBeanUsingTwitterServiceImplementation" ref="twitterServiceBean"/>
+        <property name="messageServiceBeanUsingTwitterServiceImplementation" ref="twitterServiceCustomBean"/>
     </bean>
 
     <bean id="messageSecurityServiceImplBean" class="com.epam.service.MessageSecurityServiceImpl">
