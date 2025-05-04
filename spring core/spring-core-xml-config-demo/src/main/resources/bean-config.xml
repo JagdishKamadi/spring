@@ -8,9 +8,13 @@
 
     <bean id="twitterServiceBean" class="com.epam.service.TwitterService"/>
     <bean id="whatsAppServiceBean" class="com.epam.service.WhatsAppService"/>
+
+    <!--    constructor based injection -->
     <bean id="messageProcessorImplBean" class="com.epam.service.MessageProcessorImpl">
         <constructor-arg index="0" ref="twitterServiceBean"/>
         <constructor-arg index="1" ref="whatsAppServiceBean"/>
+        <!--    setter based injection -->
+        <property name="messageService" ref="twitterServiceBean"/>
     </bean>
 
 </beans>
