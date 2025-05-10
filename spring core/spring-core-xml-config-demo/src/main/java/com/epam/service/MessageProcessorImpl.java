@@ -2,20 +2,20 @@ package com.epam.service;
 
 public class MessageProcessorImpl implements MessageProcessor {
 
-    private  MessageService twitterService;
-    private  MessageService whatsAppService;
-    private static MessageService messageService;
+    private MessageService twitterService;
+    private MessageService whatsAppService;
+    private MessageService messageService;
 
-//    public MessageProcessorImpl(MessageService twitterService, MessageService whatsAppService) {
-//        System.out.println("Calling the constructor injection");
-//        this.twitterService = twitterService;
-//        this.whatsAppService = whatsAppService;
-//    }
+    public MessageProcessorImpl(MessageService twitterService, MessageService whatsAppService) {
+        System.out.println("Calling the constructor injection");
+        this.twitterService = twitterService;
+        this.whatsAppService = whatsAppService;
+    }
 
     @Override
     public void processMessage(String message) {
-//        twitterService.processMessage(message);
-//        whatsAppService.processMessage(message);
+        twitterService.processMessage(message);
+        whatsAppService.processMessage(message);
         messageService.processMessage(message);
     }
 

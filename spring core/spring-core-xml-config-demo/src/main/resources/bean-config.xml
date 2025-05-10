@@ -19,8 +19,8 @@
 
     <!--    constructor based injection -->
     <bean id="messageProcessorImplBean" class="com.epam.service.MessageProcessorImpl">
-<!--        <constructor-arg index="0" ref="twitterServiceCustomBean"/>-->
-<!--        <constructor-arg index="1" ref="whatsAppServiceBean"/>-->
+        <constructor-arg index="0" ref="twitterServiceCustomBean"/>
+        <constructor-arg index="1" ref="whatsAppServiceBean"/>
         <!--    setter based injection -->
         <property name="messageServiceBeanUsingTwitterServiceImplementation" ref="twitterServiceCustomBean"/>
     </bean>

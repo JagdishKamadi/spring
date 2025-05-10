@@ -1,8 +1,8 @@
 package com.epam.service;
 
-import org.springframework.stereotype.Component;
+import com.epam.custom_annotation.ComponentImpl;
 
-@Component("twitterServiceCustomBean")
+@ComponentImpl("twitterServiceCustomBean")
 public class TwitterService implements MessageService {
 
     public TwitterService() {
