@@ -1,26 +1,27 @@
 package com.epam.service;
 
-import com.epam.entity.Employee;
-import org.springframework.data.domain.Sort;
+import com.epam.dtos.EmployeeDTO;
 
 import java.util.List;
 
 public interface EmployeeService {
-    Employee getEmployee(Integer id);
+    EmployeeDTO getEmployee(Integer id);
 
-    List<Employee> getEmployees();
-    List<Employee> getEmployees(Integer pageNumber,Integer pageSize);
+    List<EmployeeDTO> getEmployees();
 
-    Employee saveEmployee(Employee employee);
+    List<EmployeeDTO> getEmployees(Integer pageNumber, Integer pageSize);
 
-    Employee updateEmployee(Employee employee);
+    EmployeeDTO saveEmployee(EmployeeDTO employeeDTO);
+
+    EmployeeDTO updateEmployee(EmployeeDTO employeeDTO);
 
     void deleteEmployee(Integer id);
 
-    List<Employee> getEmployeesByName(String name);
+    List<EmployeeDTO> getEmployeesByName(String name);
 
-    List<Employee> getEmployeesByNameAndDepartment(String name,String department);
+    List<EmployeeDTO> getEmployeesByNameAndDepartment(String name, String department);
 
-    List<Employee> getEmployeeNameByContaining(String pattern);
-    List<Employee> getEmployeeNameByContainingSorted(String pattern);
+    List<EmployeeDTO> getEmployeeNameByContaining(String pattern);
+
+    List<EmployeeDTO> getEmployeeNameByContainingSorted(String pattern);
 }
