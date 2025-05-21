@@ -20,7 +20,6 @@ import org.springframework.test.web.servlet.request.MockMvcRequestBuilders;
 import java.util.List;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
-import static org.mockito.ArgumentMatchers.anyInt;
 import static org.mockito.Mockito.when;
 import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.status;
 
@@ -88,6 +87,7 @@ class EmployeeControllerTest {
 
     @Test
     void test_saveEmployee() throws Exception {
+        when(employeeController.saveEmployee(employeeDTO)).thenReturn(new ResponseEntity<>(employeeDTO, HttpStatus.CREATED));
         RequestBuilder requestBuilder = MockMvcRequestBuilders.post("/employees")
                 .accept(MediaType.APPLICATION_JSON)
                 .content(empStringDataJSON)
@@ -100,7 +100,9 @@ class EmployeeControllerTest {
 
     @Test
     void test_updateEmployee() throws Exception {
-        RequestBuilder requestBuilder = MockMvcRequestBuilders.put("/employees/{employee_id}", anyInt())
+        int id = 1;
+        when(employeeController.updateEmployee(id, employeeDTO)).thenReturn(new ResponseEntity<>(employeeDTO, HttpStatus.OK));
+        RequestBuilder requestBuilder = MockMvcRequestBuilders.put("/employees/{employee_id}", id)
                 .accept(MediaType.APPLICATION_JSON)
                 .content(empStringDataJSON)
                 .contentType(MediaType.APPLICATION_JSON);
@@ -112,7 +114,9 @@ class EmployeeControllerTest {
 
     @Test
     void test_deleteEmployee() throws Exception {
-        this.mockMvc.perform(MockMvcRequestBuilders.delete("/employees/1"))
+        int id = 1;
+        when(employeeController.deleteEmployee(id)).thenReturn(new ResponseEntity<>(HttpStatus.NO_CONTENT));
+        this.mockMvc.perform(MockMvcRequestBuilders.delete("/employees/{id}", id))
                 .andExpect(status().isNoContent());
     }
 
