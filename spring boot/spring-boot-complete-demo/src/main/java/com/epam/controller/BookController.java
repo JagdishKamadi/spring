@@ -24,7 +24,7 @@ public class BookController {
     }
 
     @GetMapping(value = "/")
-    public ResponseEntity<List<Book>> findBook() {
+    public ResponseEntity<List<Book>> findBooks() {
         return new ResponseEntity<>(bookService.findAll(), HttpStatus.FOUND);
     }
 
