@@ -1,0 +1,9 @@
+com\epam\service\CategoryService.class
+com\epam\config\AppConfig.class
+com\epam\service\MessageProcessorImpl.class
+com\epam\Main.class
+com\mega\RequestBuilder.class
+com\epam\service\MessageService.class
+com\epam\service\WhatsAppService.class
+com\epam\service\MessageProcessor.class
+com\epam\service\TwitterService.class
