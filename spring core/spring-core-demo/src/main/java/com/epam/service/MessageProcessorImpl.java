@@ -9,11 +9,18 @@ public class MessageProcessorImpl implements MessageProcessor {
 
     // we are using here match-by-name bean
     @Autowired
-    private MessageService whatsAppService;
+    @Qualifier(value = "whatsAppService")
+    private MessageService whatsAppService1;
+
+    @Autowired
+    @Qualifier(value = "whatsAppService")
+    private MessageService whatsAppService2;
 
     @Override
     public void processMsg(String message) {
-        System.out.println("Bean type " + whatsAppService.getClass());
-        whatsAppService.sendMsg(message);
+        // after using the @Scope annotation, it will create the 2 different hashcode for 2 object
+        System.out.println("Bean type whatsAppService1" + whatsAppService1.hashCode());
+        System.out.println("Bean type whatsAppService2" + whatsAppService2.hashCode());
+
     }
 }

@@ -1,8 +1,10 @@
 package com.epam.service;
 
+import org.springframework.context.annotation.Scope;
 import org.springframework.stereotype.Component;
 
 @Component
+@Scope(value = "prototype")
 public class WhatsAppService implements MessageService {
 
     @Override
