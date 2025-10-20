@@ -2,7 +2,7 @@ package com.epam.service;
 
 import org.springframework.stereotype.Component;
 
-@Component("twitterServiceBean")
+@Component
 public class TwitterService implements MessageService {
 
     @Override
