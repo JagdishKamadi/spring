@@ -2,7 +2,8 @@ package com.epam.spring_cache_demo.service;
 
 import com.epam.spring_cache_demo.model.Person;
 import com.epam.spring_cache_demo.repository.PersonRepository;
-import lombok.extern.slf4j.Slf4j;
+import org.apache.logging.log4j.LogManager;
+import org.apache.logging.log4j.Logger;
 import org.springframework.cache.annotation.CacheEvict;
 import org.springframework.cache.annotation.CachePut;
 import org.springframework.cache.annotation.Cacheable;
@@ -12,11 +13,12 @@ import java.util.List;
 import java.util.Objects;
 
 @Service
-@Slf4j
 public class PersonService {
 
+    private static final Logger LOG = LogManager.getLogger(PersonService.class);
     public static final String PERSON_ID_CACHE = "personIdCache";
     private final PersonRepository personRepository;
+
 
     public PersonService(PersonRepository personRepository) {
         this.personRepository = personRepository;
@@ -25,7 +27,7 @@ public class PersonService {
     @Cacheable(cacheNames = PERSON_ID_CACHE, key = "#id")
     public Person getPerson(Integer id) {
         // once the cache data with Id, next time this logs won't print
-        log.info("\n ++|| Calling from database with ID " + id + " ||++\n");
+        LOG.info("\n ++|| Calling from database with ID " + id + " ||++\n");
         return personRepository.findById(id).orElseThrow(() -> new RuntimeException("Person not found with this id " + id));
     }
 
