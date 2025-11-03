@@ -3,10 +3,7 @@ package com.epam.spring_cache_demo.controller;
 import com.epam.spring_cache_demo.model.Person;
 import com.epam.spring_cache_demo.service.PersonService;
 import org.springframework.http.ResponseEntity;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.PathVariable;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
 
@@ -28,5 +25,10 @@ public class PersonController {
     @GetMapping(value = "/")
     public ResponseEntity<List<Person>> getPersons() {
         return ResponseEntity.ok(personService.getPersons());
+    }
+
+    @PutMapping(value = "/update/{id}")
+    public ResponseEntity<Person> updatePerson(@PathVariable Integer id, @RequestBody Person person) {
+        return ResponseEntity.ok(personService.updatePerson(id, person));
     }
 }
