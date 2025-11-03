@@ -3,6 +3,7 @@ package com.epam.spring_cache_demo.service;
 import com.epam.spring_cache_demo.model.Person;
 import com.epam.spring_cache_demo.repository.PersonRepository;
 import lombok.extern.slf4j.Slf4j;
+import org.springframework.cache.annotation.CacheEvict;
 import org.springframework.cache.annotation.CachePut;
 import org.springframework.cache.annotation.Cacheable;
 import org.springframework.stereotype.Service;
@@ -76,5 +77,20 @@ public class PersonService {
         }
         return personRepository.save(person1);
     }
+
+    /**
+     * Removes a {@link Person} record from both the database and the cache.
+     * <p>
+     * Once the person is deleted from the database, the corresponding cache entry
+     * (identified by the given ID) must also be evicted to ensure data consistency.
+     * </p>
+     *
+     * @param id the ID of the person to delete
+     */
+    @CacheEvict(cacheNames = PERSON_ID_CACHE, key = "#id")
+    public void deletePerson(Integer id) {
+        personRepository.deleteById(id);
+    }
+
 }
 
