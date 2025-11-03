@@ -1,9 +1,9 @@
 package com.epam.spring_cache_demo.service;
 
-import com.epam.spring_cache_demo.cache.PersonLRUCache;
 import com.epam.spring_cache_demo.model.Person;
 import com.epam.spring_cache_demo.repository.PersonRepository;
 import lombok.extern.slf4j.Slf4j;
+import org.springframework.cache.annotation.Cacheable;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
@@ -13,24 +13,16 @@ import java.util.List;
 public class PersonService {
 
     private final PersonRepository personRepository;
-    private final PersonLRUCache<Integer, Person> personLRUCache;
 
     public PersonService(PersonRepository personRepository) {
         this.personRepository = personRepository;
-        this.personLRUCache = new PersonLRUCache<>(3);
     }
 
+    @Cacheable(cacheNames = "personIdCache", key = "#id")
     public Person getPerson(Integer id) {
-        if (personLRUCache.containsKey(id)) {
-            log.info("\n ++|| Calling from Person LRU Cache with ID " + id + " ||++\n");
-            return personLRUCache.get(id);
-        } else {
-            log.info("\n ++|| Calling from database with ID " + id + " ||++\n");
-            Person person = personRepository.findById(id).orElseThrow(() -> new RuntimeException("Person not found with this id " + id));
-            personLRUCache.put(id, person);
-            log.info("\n ++|| Cache Data " + personLRUCache + " ||++\n");
-            return person;
-        }
+        // once the cache data with Id, next time this logs won't print
+        log.info("\n ++|| Calling from database with ID " + id + " ||++\n");
+        return personRepository.findById(id).orElseThrow(() -> new RuntimeException("Person not found with this id " + id));
     }
 
     public List<Person> getPersons() {
