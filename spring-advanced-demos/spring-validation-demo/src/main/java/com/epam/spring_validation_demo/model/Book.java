@@ -5,6 +5,7 @@ import jakarta.persistence.Entity;
 import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
+import jakarta.validation.constraints.NotBlank;
 import jakarta.validation.constraints.NotNull;
 import lombok.*;
 import org.hibernate.proxy.HibernateProxy;
@@ -25,10 +26,10 @@ public class Book {
     @JsonIgnore
     private Integer id;
 
-    @NotNull(message = "{book.name.not-null}")
+    @NotBlank(message = "{book.name.not-blank}")
     private String bookName;
 
-    @NotNull(message = "{author.name.not-null}")
+    @NotBlank(message = "{author.name.not-blank}")
     private String authorName;
 
     @Override
