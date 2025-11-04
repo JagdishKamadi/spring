@@ -25,10 +25,10 @@ public class CacheEvictScheduler {
      *
      * <p><b>Note:</b> Adjust the interval as per the application's caching and data refresh needs.</p>
      */
-    @Scheduled(fixedRate = 60000) // 1 minute
+    /*@Scheduled(fixedRate = 60000) // 1 minute
     public void clearAllCachesOnTimer() {
         LOG.info("Scheduled Cache Cleanup Triggered — clearing all caches at {}", java.time.LocalTime.now());
         cacheService.evictAllCaches();
         LOG.info("Cache cleanup completed successfully.\n");
-    }
+    }*/
 }
