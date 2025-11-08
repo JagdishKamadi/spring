@@ -1,5 +1,10 @@
 package com.epam.lib_transaction_model.model;
 
+import lombok.AllArgsConstructor;
+import lombok.Builder;
+import lombok.Data;
+import lombok.NoArgsConstructor;
+
 import java.math.BigDecimal;
 import java.time.LocalDateTime;
 import java.util.List;
@@ -9,6 +14,10 @@ import java.util.List;
  * Holds all core transaction details and linked child objects
  * such as Merchant info and list of TransactionItems.
  */
+@Data
+@AllArgsConstructor
+@NoArgsConstructor
+@Builder
 public class TransactionRequest {
 
     private Long id;
@@ -34,7 +43,4 @@ public class TransactionRequest {
      **/
     private Merchant merchant;
     private List<TransactionItem> items;
-
-    public TransactionRequest() {
-    }
 }
