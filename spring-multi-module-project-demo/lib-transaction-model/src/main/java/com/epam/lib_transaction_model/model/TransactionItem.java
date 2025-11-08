@@ -21,5 +21,4 @@ public class TransactionItem {
     private Integer quantity;
     private BigDecimal price;
     private String category;
-    private TransactionRequest parentTransaction;
 }
