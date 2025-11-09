@@ -1,5 +1,8 @@
 package com.epam.lib_transaction_model.model;
 
+import com.epam.lib_transaction_model.enums.Currency;
+import com.epam.lib_transaction_model.enums.PaymentMethod;
+import com.epam.lib_transaction_model.enums.TransactionStatus;
 import lombok.AllArgsConstructor;
 import lombok.Builder;
 import lombok.Data;
@@ -24,8 +27,8 @@ public class TransactionRequest {
     private String transactionId;
     private String referenceNumber;
     private BigDecimal amount;
-    private String currency;
-    private String paymentMethod;
+    private Currency currency;
+    private PaymentMethod paymentMethod;
     private TransactionStatus status;
     private LocalDateTime initiatedTime;
     private LocalDateTime completedTime;
