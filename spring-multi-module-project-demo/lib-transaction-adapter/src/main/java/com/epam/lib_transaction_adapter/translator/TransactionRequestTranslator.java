@@ -1,4 +1,4 @@
-package com.epam.lib_transaction_adapter.converter;
+package com.epam.lib_transaction_adapter.translator;
 
 import com.epam.lib_transaction_model.model.TransactionRequest;
 
