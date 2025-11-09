@@ -38,7 +38,9 @@ public class TransactionExceptionHandler {
         errorResponse.put("status", HttpStatus.BAD_REQUEST.value());
         errorResponse.put("error", HttpStatus.BAD_REQUEST.getReasonPhrase());
         errorResponse.put("message", exception.getMessage());
-        errorResponse.put("path", webRequest.getDescription(false).replace("uri=", ""));
+        errorResponse.put("path", exception.getFieldName() != null
+                ? exception.getFieldName()
+                : webRequest.getDescription(false).replace("uri=", ""));
 
         return ResponseEntity.status(HttpStatus.BAD_REQUEST).body(errorResponse);
     }

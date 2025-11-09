@@ -7,8 +7,8 @@ import com.epam.lib_transaction_model.model.TransactionRequest;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.stereotype.Component;
 
-import java.util.ArrayList;
-import java.util.List;
+import java.util.EnumSet;
+import java.util.Set;
 
 /**
  * Validates that the {@link TransactionRequest} contains a supported currency.
@@ -21,7 +21,7 @@ import java.util.List;
 @Slf4j
 public class CurrencyValidationRule implements TransactionRequestValidator {
 
-    private static final List<Currency> SUPPORTED_CURRENCIES = new ArrayList<>(List.of(Currency.values()));
+    private static final Set<Currency> SUPPORTED_CURRENCIES = EnumSet.allOf(Currency.class);
 
     @Override
     public void validateRequest(TransactionRequest transactionRequest) {
@@ -36,13 +36,13 @@ public class CurrencyValidationRule implements TransactionRequestValidator {
 
         if (currency == null) {
             log.warn("Currency field is null or empty in the transaction request.");
-            throw new InvalidTransactionRequestException("Currency must not be null or empty.");
+            throw new InvalidTransactionRequestException("transactionRequest.currency", "Currency must not be null or empty.");
         }
 
-        if (!SUPPORTED_CURRENCIES.contains(currency) || Currency.UNKNOWN == currency) {
-            log.warn("Unsupported currency detected: {}. Supported currencies are: {}", currency, SUPPORTED_CURRENCIES);
+        if (currency == Currency.UNKNOWN || !SUPPORTED_CURRENCIES.contains(currency)) {
             SUPPORTED_CURRENCIES.remove(Currency.UNKNOWN);
-            throw new InvalidTransactionRequestException(
+            log.warn("Unsupported currency detected: {}. Supported currencies are: {}", currency, SUPPORTED_CURRENCIES);
+            throw new InvalidTransactionRequestException("transactionRequest.currency",
                     "Invalid currency. Supported currencies are: " + SUPPORTED_CURRENCIES
             );
         }
