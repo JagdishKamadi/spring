@@ -14,7 +14,7 @@ public enum Currency {
     AUD("AUD"),
     CAD("CAD"),
     @JsonEnumDefaultValue
-    UNKNOWN("Unknown");
+    UNKNOWN("UNKNOWN");
 
     private final String code;
 

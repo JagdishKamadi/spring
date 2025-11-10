@@ -54,7 +54,7 @@ public enum PaymentMethod {
     EMI("EMI"),
 
     @JsonEnumDefaultValue
-    UNKNOWN("Unknown");
+    UNKNOWN("UNKNOWN");
 
     private final String code;
 
