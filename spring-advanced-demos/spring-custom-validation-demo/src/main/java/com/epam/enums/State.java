@@ -1,0 +1,25 @@
+package com.epam.enums;
+
+public enum State {
+
+    GOA,
+    MAHARASHTRA,
+    KARNATAKA,
+    GUJARAT,
+    MADHYA_PRADESH,
+    RAJASTHAN,
+    DELHI,
+    UTTAR_PRADESH,
+    TAMIL_NADU,
+    KERALA,
+    ANDHRA_PRADESH,
+    TELANGANA,
+    WEST_BENGAL,
+    PUNJAB,
+    HARYANA,
+    ODISHA,
+    BIHAR,
+    ASSAM,
+    HIMACHAL_PRADESH,
+    UTTARAKHAND
+}
